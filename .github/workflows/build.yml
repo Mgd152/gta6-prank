@@ -1,0 +1,48 @@
+name: Build unsigned IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Build iOS App
+        run: |
+          PROJECT=$(find . -name project.yml -print -quit)
+          cd "$(dirname "$PROJECT")"
+
+          xcodegen generate
+
+          xcodebuild \
+            -scheme "GTA VI" \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+          mkdir -p "$GITHUB_WORKSPACE/Payload"
+
+          cp -R build/Build/Products/Release-iphoneos/*.app \
+            "$GITHUB_WORKSPACE/Payload/"
+
+          cd "$GITHUB_WORKSPACE"
+          zip -qr GTA_VI.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: GTA_VI_unsigned
+          path: GTA_VI.ipa
