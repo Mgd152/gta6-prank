@@ -14,19 +14,20 @@ An unofficial fan-made GTA VI menu experience for iPhone.
 
 ## ✨ Features
 
-- Vice City inspired interface
+- GTA VI-inspired menu interface
 - Native iOS application
 - Fully offline
-- ESign compatible unsigned IPA
-- No jailbreak required for supported signing methods
+- Compatible with IPA signing and sideloading tools
+- No jailbreak required with supported signing methods
 
 ## 📱 Installation
 
-1. Download the IPA.
-2. Import it into ESign.
-3. Sign with your certificate.
-4. Install and enjoy.
+1. Download the IPA file.
+2. Import it into your preferred IPA signing or sideloading tool.
+3. Sign using a valid certificate and provisioning profile.
+4. Install and launch the app.
 
+Supports ESign, Feather, GBox, Scarlet, Sideloadly, AltStore and other compatible tools, subject to device and signing requirements.
 ## ⚠️ Disclaimer
 
 This is a fan-made prank application, not the actual GTA VI game.
