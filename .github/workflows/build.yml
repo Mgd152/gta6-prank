@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Extract source
+        run: unzip -o GTA_VI_AutoBuild.zip -d source
+        
       - name: Install XcodeGen
         run: brew install xcodegen
 
